@@ -1,0 +1,997 @@
+
+; HI-TECH Software PICC Assembler header file.
+; Definitions based on C header file: pic16f1936.h.
+
+; NOTE: PICC assembler option -P is required to preprocess assembler sources. 
+
+; Special Function Register definitions
+INDF0		equ	0000h
+INDF1		equ	0001h
+PCL		equ	0002h
+STATUS		equ	0003h
+FSR0L		equ	0004h
+FSR0H		equ	0005h
+FSR1L		equ	0006h
+FSR1H		equ	0007h
+BSR		equ	0008h
+WREG		equ	0009h
+PCLATH		equ	000Ah
+INTCON		equ	000Bh
+PORTA		equ	000Ch
+PORTB		equ	000Dh
+PORTC		equ	000Eh
+PORTE		equ	0010h
+PIR1		equ	0011h
+PIR2		equ	0012h
+PIR3		equ	0013h
+TMR0		equ	0015h
+TMR1L		equ	0016h
+TMR1H		equ	0017h
+T1CON		equ	0018h
+T1GCON		equ	0019h
+TMR2		equ	001Ah
+PR2		equ	001Bh
+T2CON		equ	001Ch
+CPSCON0		equ	001Eh
+CPSCON1		equ	001Fh
+TRIS_REGA		equ	008Ch
+TRIS_REGB		equ	008Dh
+TRIS_REGC		equ	008Eh
+TRIS_REGE		equ	0090h
+PIE1		equ	0091h
+PIE2		equ	0092h
+PIE3		equ	0093h
+OPTION_REG_REG	equ	0095h
+PCON		equ	0096h
+WDTCON		equ	0097h
+OSCTUNE		equ	0098h
+OSCCON		equ	0099h
+OSCSTAT		equ	009Ah
+ADRESL		equ	009Bh
+ADRESH		equ	009Ch
+ADCON0		equ	009Dh
+ADCON1		equ	009Eh
+LATA		equ	010Ch
+LATB		equ	010Dh
+LATC		equ	010Eh
+LATE		equ	0110h
+CM1CON0		equ	0111h
+CM1CON1		equ	0112h
+CM2CON0		equ	0113h
+CM2CON1		equ	0114h
+CMOUT		equ	0115h
+BORCON		equ	0116h
+FVRCON		equ	0117h
+DACCON0		equ	0118h
+DACCON1		equ	0119h
+SRCON0		equ	011Ah
+SRCON1		equ	011Bh
+APFCON		equ	011Dh
+ANSELA		equ	018Ch
+ANSELB		equ	018Dh
+EEADRL		equ	0191h
+EEADRH		equ	0192h
+EEDATL		equ	0193h
+EEDATA		equ	0193h
+EEDATH		equ	0194h
+EECON1		equ	0195h
+EECON2		equ	0196h
+RCREG		equ	0199h
+TXREG		equ	019Ah
+SPBRGL		equ	019Bh
+SPBRG		equ	019Bh
+SPBRGH		equ	019Ch
+RCSTA		equ	019Dh
+TXSTA		equ	019Eh
+BAUDCTL		equ	019Fh
+WPUB		equ	020Dh
+WPUE		equ	0210h
+SSPBUF		equ	0211h
+SSPADD		equ	0212h
+SSPMSK		equ	0213h
+SSPSTAT		equ	0214h
+SSPCON		equ	0215h
+SSPCON2		equ	0216h
+SSPCON3		equ	0217h
+CCPR1L		equ	0291h
+CCPR1H		equ	0292h
+CCP1CON		equ	0293h
+PWM1CON		equ	0294h
+ECCP1AS		equ	0295h
+PSTR1CON	equ	0296h
+CCPR2L		equ	0298h
+CCPR2H		equ	0299h
+CCP2CON		equ	029Ah
+PWM2CON		equ	029Bh
+ECCP2AS		equ	029Ch
+PSTR2CON	equ	029Dh
+CCPTMRS0	equ	029Eh
+CCPTMRS1	equ	029Fh
+CCPR3L		equ	0311h
+CCPR3H		equ	0312h
+CCP3CON		equ	0313h
+PWM3CON		equ	0314h
+ECCP3AS		equ	0315h
+PSTR3CON	equ	0316h
+CCPR4L		equ	0318h
+CCPR4H		equ	0319h
+CCP4CON		equ	031Ah
+CCPR5L		equ	031Ch
+CCPR5H		equ	031Dh
+CCP5CON		equ	031Eh
+IOCBP		equ	0394h
+IOCBN		equ	0395h
+IOCBF		equ	0396h
+TMR4		equ	0415h
+PR4		equ	0416h
+T4CON		equ	0417h
+TMR6		equ	041Ch
+PR6		equ	041Dh
+T6CON		equ	041Eh
+LCDCON		equ	0791h
+LCDPS		equ	0792h
+LCDREF		equ	0793h
+LCDCST		equ	0794h
+LCDRL		equ	0795h
+LCDSE0		equ	0798h
+LCDSE1		equ	0799h
+LCDDATA0	equ	07A0h
+LCDDATA1	equ	07A1h
+LCDDATA3	equ	07A3h
+LCDDATA4	equ	07A4h
+LCDDATA6	equ	07A6h
+LCDDATA7	equ	07A7h
+LCDDATA9	equ	07A9h
+LCDDATA10	equ	07AAh
+STATUS_SHAD	equ	0FE4h
+WREG_SHAD	equ	0FE5h
+BSR_SHAD	equ	0FE6h
+PCLATH_SHAD	equ	0FE7h
+FSR0L_SHAD	equ	0FE8h
+FSR0H_SHAD	equ	0FE9h
+FSR1L_SHAD	equ	0FEAh
+FSR1H_SHAD	equ	0FEBh
+STKPTR		equ	0FEDh
+TOSL		equ	0FEEh
+TOSH		equ	0FEFh
+
+; Bit variables associates within SFRs
+#ifndef	_HTC_H_
+#endif
+#ifndef __PIC16F1936_H
+#define CARRY	STATUS,0
+#define DC	STATUS,1
+#define ZERO	STATUS,2
+#define nPD	STATUS,3
+#define nTO	STATUS,4
+#ifndef _LIB_BUILD
+#endif
+#define BSR0	BSR,0
+#define BSR1	BSR,1
+#define BSR2	BSR,2
+#define BSR3	BSR,3
+#define BSR4	BSR,4
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#define IOCIF	INTCON,0
+#define INTF	INTCON,1
+#define TMR0IF	INTCON,2
+#define IOCIE	INTCON,3
+#define INTE	INTCON,4
+#define TMR0IE	INTCON,5
+#define PEIE	INTCON,6
+#define GIE	INTCON,7
+#ifndef _LIB_BUILD
+#endif
+#define RA0	PORTA,0
+#define RA1	PORTA,1
+#define RA2	PORTA,2
+#define RA3	PORTA,3
+#define RA4	PORTA,4
+#define RA5	PORTA,5
+#define RA6	PORTA,6
+#define RA7	PORTA,7
+#ifndef _LIB_BUILD
+#endif
+#define RB0	PORTB,0
+#define RB1	PORTB,1
+#define RB2	PORTB,2
+#define RB3	PORTB,3
+#define RB4	PORTB,4
+#define RB5	PORTB,5
+#define RB6	PORTB,6
+#define RB7	PORTB,7
+#ifndef _LIB_BUILD
+#endif
+#define RC0	PORTC,0
+#define RC1	PORTC,1
+#define RC2	PORTC,2
+#define RC3	PORTC,3
+#define RC4	PORTC,4
+#define RC5	PORTC,5
+#define RC6	PORTC,6
+#define RC7	PORTC,7
+#ifndef _LIB_BUILD
+#endif
+#define RE3	PORTE,3
+#ifndef _LIB_BUILD
+#endif
+#define TMR1IF	PIR1,0
+#define TMR2IF	PIR1,1
+#define CCP1IF	PIR1,2
+#define SSPIF	PIR1,3
+#define TXIF	PIR1,4
+#define RCIF	PIR1,5
+#define ADIF	PIR1,6
+#define TMR1GIF	PIR1,7
+#ifndef _LIB_BUILD
+#endif
+#define CCP2IF	PIR2,0
+#define LCDIF	PIR2,2
+#define BCLIF	PIR2,3
+#define EEIF	PIR2,4
+#define C1IF	PIR2,5
+#define C2IF	PIR2,6
+#define OSFIF	PIR2,7
+#ifndef _LIB_BUILD
+#endif
+#define TMR4IF	PIR3,1
+#define TMR6IF	PIR3,3
+#define CCP3IF	PIR3,4
+#define CCP4IF	PIR3,5
+#define CCP5IF	PIR3,6
+#ifndef _LIB_BUILD
+#endif
+#define TMR1ON	T1CON,0
+#define nT1SYNC	T1CON,2
+#define T1OSCEN	T1CON,3
+#define T1CKPS0	T1CON,4
+#define T1CKPS1	T1CON,5
+#define TMR1CS0	T1CON,6
+#define TMR1CS1	T1CON,7
+#ifndef _LIB_BUILD
+#endif
+#define T1GSS0	T1GCON,0
+#define T1GSS1	T1GCON,1
+#define T1GVAL	T1GCON,2
+#define T1GGO	T1GCON,3
+#define T1GSPM	T1GCON,4
+#define T1GTM	T1GCON,5
+#define T1GPOL	T1GCON,6
+#define TMR1GE	T1GCON,7
+#ifndef _LIB_BUILD
+#endif
+#define T2CKPS0	T2CON,0
+#define T2CKPS1	T2CON,1
+#define TMR2ON	T2CON,2
+#define T2OUTPS0	T2CON,3
+#define T2OUTPS1	T2CON,4
+#define T2OUTPS2	T2CON,5
+#define T2OUTPS3	T2CON,6
+#ifndef _LIB_BUILD
+#endif
+#define T0XCS	CPSCON0,0
+#define CPSOUT	CPSCON0,1
+#define CPSRNG0	CPSCON0,2
+#define CPSRNG1	CPSCON0,3
+#define CPSON	CPSCON0,7
+#ifndef _LIB_BUILD
+#endif
+#define CPSCH0	CPSCON1,0
+#define CPSCH1	CPSCON1,1
+#define CPSCH2	CPSCON1,2
+#ifndef _LIB_BUILD
+#endif
+#define TRIS_REGA0	TRIS_REGA,0
+#define TRIS_REGA1	TRIS_REGA,1
+#define TRIS_REGA2	TRIS_REGA,2
+#define TRIS_REGA3	TRIS_REGA,3
+#define TRIS_REGA4	TRIS_REGA,4
+#define TRIS_REGA5	TRIS_REGA,5
+#define TRIS_REGA6	TRIS_REGA,6
+#define TRIS_REGA7	TRIS_REGA,7
+#ifndef _LIB_BUILD
+#endif
+#define TRIS_REGB0	TRIS_REGB,0
+#define TRIS_REGB1	TRIS_REGB,1
+#define TRIS_REGB2	TRIS_REGB,2
+#define TRIS_REGB3	TRIS_REGB,3
+#define TRIS_REGB4	TRIS_REGB,4
+#define TRIS_REGB5	TRIS_REGB,5
+#define TRIS_REGB6	TRIS_REGB,6
+#define TRIS_REGB7	TRIS_REGB,7
+#ifndef _LIB_BUILD
+#endif
+#define TRIS_REGC0	TRIS_REGC,0
+#define TRIS_REGC1	TRIS_REGC,1
+#define TRIS_REGC2	TRIS_REGC,2
+#define TRIS_REGC3	TRIS_REGC,3
+#define TRIS_REGC4	TRIS_REGC,4
+#define TRIS_REGC5	TRIS_REGC,5
+#define TRIS_REGC6	TRIS_REGC,6
+#define TRIS_REGC7	TRIS_REGC,7
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#define TMR1IE	PIE1,0
+#define TMR2IE	PIE1,1
+#define CCP1IE	PIE1,2
+#define SSPIE	PIE1,3
+#define TXIE	PIE1,4
+#define RCIE	PIE1,5
+#define ADIE	PIE1,6
+#define TMR1GIE	PIE1,7
+#ifndef _LIB_BUILD
+#endif
+#define CCP2IE	PIE2,0
+#define LCDIE	PIE2,2
+#define BCLIE	PIE2,3
+#define EEIE	PIE2,4
+#define C1IE	PIE2,5
+#define C2IE	PIE2,6
+#define OSFIE	PIE2,7
+#ifndef _LIB_BUILD
+#endif
+#define TMR4IE	PIE3,1
+#define TMR6IE	PIE3,3
+#define CCP3IE	PIE3,4
+#define CCP4IE	PIE3,5
+#define CCP5IE	PIE3,6
+#ifndef _LIB_BUILD
+#endif
+#define PS0	OPTION_REG_REG,0
+#define PS1	OPTION_REG_REG,1
+#define PS2	OPTION_REG_REG,2
+#define PSA	OPTION_REG_REG,3
+#define T0SE	OPTION_REG_REG,4
+#define T0CS	OPTION_REG_REG,5
+#define INTEDG	OPTION_REG_REG,6
+#define nWPUEN	OPTION_REG_REG,7
+#ifndef _LIB_BUILD
+#endif
+#define nBOR	PCON,0
+#define nPOR	PCON,1
+#define nRI	PCON,2
+#define nRMCLR	PCON,3
+#define STKUNF	PCON,6
+#define STKOVF	PCON,7
+#ifndef _LIB_BUILD
+#endif
+#define SWDTEN	WDTCON,0
+#define WDTPS0	WDTCON,1
+#define WDTPS1	WDTCON,2
+#define WDTPS2	WDTCON,3
+#define WDTPS3	WDTCON,4
+#define WDTPS4	WDTCON,5
+#ifndef _LIB_BUILD
+#endif
+#define TUN0	OSCTUNE,0
+#define TUN1	OSCTUNE,1
+#define TUN2	OSCTUNE,2
+#define TUN3	OSCTUNE,3
+#define TUN4	OSCTUNE,4
+#define TUN5	OSCTUNE,5
+#ifndef _LIB_BUILD
+#endif
+#define SCS0	OSCCON,0
+#define SCS1	OSCCON,1
+#define IRCF0	OSCCON,3
+#define IRCF1	OSCCON,4
+#define IRCF2	OSCCON,5
+#define IRFC3	OSCCON,6
+#define SPLLEN	OSCCON,7
+#ifndef _LIB_BUILD
+#endif
+#define HFIOFS	OSCSTAT,0
+#define LFIOFR	OSCSTAT,1
+#define MFIOFR	OSCSTAT,2
+#define HFIOFL	OSCSTAT,3
+#define HFIOFR	OSCSTAT,4
+#define OSTS	OSCSTAT,5
+#define PLLR	OSCSTAT,6
+#define T1OSCR	OSCSTAT,7
+#ifndef _LIB_BUILD
+#endif
+#define ADON	ADCON0,0
+#define GO_nDONE	ADCON0,1
+#define CHS0	ADCON0,2
+#define CHS1	ADCON0,3
+#define CHS2	ADCON0,4
+#define CHS3	ADCON0,5
+#define CHS4	ADCON0,6
+#define ADGO	ADCON0,1
+#ifndef _LIB_BUILD
+#endif
+#define ADPREF0	ADCON1,0
+#define ADPREF1	ADCON1,1
+#define ADNREF	ADCON1,2
+#define ADCS0	ADCON1,4
+#define ADCS1	ADCON1,5
+#define ADCS2	ADCON1,6
+#define ADFM	ADCON1,7
+#ifndef _LIB_BUILD
+#endif
+#define LATA0	LATA,0
+#define LATA1	LATA,1
+#define LATA2	LATA,2
+#define LATA3	LATA,3
+#define LATA4	LATA,4
+#define LATA5	LATA,5
+#define LATA6	LATA,6
+#define LATA7	LATA,7
+#ifndef _LIB_BUILD
+#endif
+#define LATB0	LATB,0
+#define LATB1	LATB,1
+#define LATB2	LATB,2
+#define LATB3	LATB,3
+#define LATB4	LATB,4
+#define LATB5	LATB,5
+#define LATB6	LATB,6
+#define LATB7	LATB,7
+#ifndef _LIB_BUILD
+#endif
+#define LATC0	LATC,0
+#define LATC1	LATC,1
+#define LATC2	LATC,2
+#define LATC3	LATC,3
+#define LATC4	LATC,4
+#define LATC5	LATC,5
+#define LATC6	LATC,6
+#define LATC7	LATC,7
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#define C1SYNC	CM1CON0,0
+#define C1HYS	CM1CON0,1
+#define C1SP	CM1CON0,2
+#define C1POL	CM1CON0,4
+#define C1OE	CM1CON0,5
+#define C1OUT	CM1CON0,6
+#define C1ON	CM1CON0,7
+#ifndef _LIB_BUILD
+#endif
+#define C1NCH0	CM1CON1,0
+#define C1NCH1	CM1CON1,1
+#define C1PCH0	CM1CON1,4
+#define C1PCH1	CM1CON1,5
+#define C1INTN	CM1CON1,6
+#define C1INTP	CM1CON1,7
+#ifndef _LIB_BUILD
+#endif
+#define C2SYNC	CM2CON0,0
+#define C2HYS	CM2CON0,1
+#define C2SP	CM2CON0,2
+#define C2POL	CM2CON0,4
+#define C2OE	CM2CON0,5
+#define C2OUT	CM2CON0,6
+#define C2ON	CM2CON0,7
+#ifndef _LIB_BUILD
+#endif
+#define C2NCH0	CM2CON1,0
+#define C2NCH1	CM2CON1,1
+#define C2PCH0	CM2CON1,4
+#define C2PCH1	CM2CON1,5
+#define C2INTN	CM2CON1,6
+#define C2INTP	CM2CON1,7
+#ifndef _LIB_BUILD
+#endif
+#define MC1OUT	CMOUT,0
+#define MC2OUT	CMOUT,1
+#ifndef _LIB_BUILD
+#endif
+#define BORRDY	BORCON,0
+#define SBOREN	BORCON,7
+#ifndef _LIB_BUILD
+#endif
+#define ADFVR0	FVRCON,0
+#define ADFVR1	FVRCON,1
+#define CDAFVR0	FVRCON,2
+#define CDAFVR1	FVRCON,3
+#define TSRNG	FVRCON,4
+#define TSEN	FVRCON,5
+#define FVRRDY	FVRCON,6
+#define FVREN	FVRCON,7
+#ifndef _LIB_BUILD
+#endif
+#define D1NSS	DACCON0,0
+#define D1PSS0	DACCON0,2
+#define D1PSS1	DACCON0,3
+#define DAC1OE	DACCON0,5
+#define D1LPS	DACCON0,6
+#define D1EN	DACCON0,7
+#ifndef _LIB_BUILD
+#endif
+#define DAC1R0	DACCON1,0
+#define DAC1R1	DACCON1,1
+#define DAC1R2	DACCON1,2
+#define DAC1R3	DACCON1,3
+#define DAC1R4	DACCON1,4
+#ifndef _LIB_BUILD
+#endif
+#define SRPR	SRCON0,0
+#define SRPS	SRCON0,1
+#define SRNQEN	SRCON0,2
+#define SRQEN	SRCON0,3
+#define SRCLK0	SRCON0,4
+#define SRCLK1	SRCON0,5
+#define SRCLK2	SRCON0,6
+#define SRLEN	SRCON0,7
+#ifndef _LIB_BUILD
+#endif
+#define SRRC1E	SRCON1,0
+#define SRRC2E	SRCON1,1
+#define SRRCKE	SRCON1,2
+#define SRRPE	SRCON1,3
+#define SRSC1E	SRCON1,4
+#define SRSC2E	SRCON1,5
+#define SRSCKE	SRCON1,6
+#define SRSPE	SRCON1,7
+#ifndef _LIB_BUILD
+#endif
+#define CCP2SEL	APFCON,0
+#define SSSEL	APFCON,1
+#define C2OUTSEL	APFCON,2
+#define SRNQSEL	APFCON,3
+#define P2BSEL	APFCON,4
+#define T1GSEL	APFCON,5
+#define CCP3SEL	APFCON,6
+#ifndef _LIB_BUILD
+#endif
+#define ANSA0	ANSELA,0
+#define ANSA1	ANSELA,1
+#define ANSA2	ANSELA,2
+#define ANSA3	ANSELA,3
+#define ANSA4	ANSELA,4
+#define ANSA5	ANSELA,5
+#ifndef _LIB_BUILD
+#endif
+#define ANSB0	ANSELB,0
+#define ANSB1	ANSELB,1
+#define ANSB2	ANSELB,2
+#define ANSB3	ANSELB,3
+#define ANSB4	ANSELB,4
+#define ANSB5	ANSELB,5
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#define RD	EECON1,0
+#define WR	EECON1,1
+#define WREN	EECON1,2
+#define WRERR	EECON1,3
+#define FREE	EECON1,4
+#define LWLO	EECON1,5
+#define CFGS	EECON1,6
+#define EEPGD	EECON1,7
+#ifndef _LIB_BUILD
+#endif
+#define RX9D	RCSTA,0
+#define OERR	RCSTA,1
+#define FERR	RCSTA,2
+#define ADDEN	RCSTA,3
+#define CREN	RCSTA,4
+#define SREN	RCSTA,5
+#define RX9	RCSTA,6
+#define SPEN	RCSTA,7
+#ifndef _LIB_BUILD
+#endif
+#define TX9D	TXSTA,0
+#define TRMT	TXSTA,1
+#define BRGH	TXSTA,2
+#define SENDB	TXSTA,3
+#define SYNC	TXSTA,4
+#define TXEN	TXSTA,5
+#define TX9	TXSTA,6
+#define CSRC	TXSTA,7
+#ifndef _LIB_BUILD
+#endif
+#define ABDEN	BAUDCTL,0
+#define WUE	BAUDCTL,1
+#define BRG16	BAUDCTL,3
+#define SCKP	BAUDCTL,4
+#define RCIDL	BAUDCTL,6
+#define ABDOVF	BAUDCTL,7
+#ifndef _LIB_BUILD
+#endif
+#define WPUB0	WPUB,0
+#define WPUB1	WPUB,1
+#define WPUB2	WPUB,2
+#define WPUB3	WPUB,3
+#define WPUB4	WPUB,4
+#define WPUB5	WPUB,5
+#define WPUB6	WPUB,6
+#define WPUB7	WPUB,7
+#ifndef _LIB_BUILD
+#endif
+#define WPUE3	WPUE,3
+#ifndef _LIB_BUILD
+#endif
+#define BF	SSPSTAT,0
+#define UA	SSPSTAT,1
+#define R_nW	SSPSTAT,2
+#define S	SSPSTAT,3
+#define P	SSPSTAT,4
+#define D_nA	SSPSTAT,5
+#define CKE	SSPSTAT,6
+#define SMP	SSPSTAT,7
+#ifndef _LIB_BUILD
+#endif
+#define SSPM0	SSPCON,0
+#define SSPM1	SSPCON,1
+#define SSPM2	SSPCON,2
+#define SSPM3	SSPCON,3
+#define CKP	SSPCON,4
+#define SSPEN	SSPCON,5
+#define SSPOV	SSPCON,6
+#define WCOL	SSPCON,7
+#ifndef _LIB_BUILD
+#endif
+#define SEN	SSPCON2,0
+#define RSEN	SSPCON2,1
+#define PEN	SSPCON2,2
+#define RCEN	SSPCON2,3
+#define ACKEN	SSPCON2,4
+#define ACKDT	SSPCON2,5
+#define ACKSTAT	SSPCON2,6
+#define GCEN	SSPCON2,7
+#ifndef _LIB_BUILD
+#endif
+#define DHEN	SSPCON3,0
+#define AHEN	SSPCON3,1
+#define SBCDE	SSPCON3,2
+#define SDAHT	SSPCON3,3
+#define BOEN	SSPCON3,4
+#define ACKTIM	SSPCON3,7
+#ifndef _LIB_BUILD
+#endif
+#define CCP1M0	CCP1CON,0
+#define CCP1M1	CCP1CON,1
+#define CCP1M2	CCP1CON,2
+#define CCP1M3	CCP1CON,3
+#define DC1B0	CCP1CON,4
+#define DC1B1	CCP1CON,5
+#define P1M0	CCP1CON,6
+#define P1M1	CCP1CON,7
+#ifndef _LIB_BUILD
+#endif
+#define P1DC0	PWM1CON,0
+#define P1DC1	PWM1CON,1
+#define P1DC2	PWM1CON,2
+#define P1DC3	PWM1CON,3
+#define P1DC4	PWM1CON,4
+#define P1DC5	PWM1CON,5
+#define P1DC6	PWM1CON,6
+#define P1RSEN	PWM1CON,7
+#ifndef _LIB_BUILD
+#endif
+#define PSS1BD0	ECCP1AS,0
+#define PSS1BD1	ECCP1AS,1
+#define PSS1AC0	ECCP1AS,2
+#define PSS1AC1	ECCP1AS,3
+#define CCP1AS0	ECCP1AS,4
+#define CCP1AS1	ECCP1AS,5
+#define CCP1AS2	ECCP1AS,6
+#define CCP1ASE	ECCP1AS,7
+#ifndef _LIB_BUILD
+#endif
+#define STR1A	PSTR1CON,0
+#define STR1B	PSTR1CON,1
+#define STR1C	PSTR1CON,2
+#define STR1D	PSTR1CON,3
+#define STR1SYNC	PSTR1CON,4
+#ifndef _LIB_BUILD
+#endif
+#define CCP2M0	CCP2CON,0
+#define CCP2M1	CCP2CON,1
+#define CCP2M2	CCP2CON,2
+#define CCP2M3	CCP2CON,3
+#define DC2B0	CCP2CON,4
+#define DC2B1	CCP2CON,5
+#define P2M0	CCP2CON,6
+#define P2M1	CCP2CON,7
+#ifndef _LIB_BUILD
+#endif
+#define P2DC0	PWM2CON,0
+#define P2DC1	PWM2CON,1
+#define P2DC2	PWM2CON,2
+#define P2DC3	PWM2CON,3
+#define P2DC4	PWM2CON,4
+#define P2DC5	PWM2CON,5
+#define P2DC6	PWM2CON,6
+#define P2RSEN	PWM2CON,7
+#ifndef _LIB_BUILD
+#endif
+#define PSS2BD0	ECCP2AS,0
+#define PSS2BD1	ECCP2AS,1
+#define PSS2AC0	ECCP2AS,2
+#define PSS2AC1	ECCP2AS,3
+#define CCP2AS0	ECCP2AS,4
+#define CCP2AS1	ECCP2AS,5
+#define CCP2AS2	ECCP2AS,6
+#define CCP2ASE	ECCP2AS,7
+#ifndef _LIB_BUILD
+#endif
+#define STR2A	PSTR2CON,0
+#define STR2B	PSTR2CON,1
+#define STR2C	PSTR2CON,2
+#define STR2D	PSTR2CON,3
+#define STR2SYNC	PSTR2CON,4
+#ifndef _LIB_BUILD
+#endif
+#define C1TSEL0	CCPTMRS0,0
+#define C1TSEL1	CCPTMRS0,1
+#define C2TSEL0	CCPTMRS0,2
+#define C2TSEL1	CCPTMRS0,3
+#define C3TSEL0	CCPTMRS0,4
+#define C3TSEL1	CCPTMRS0,5
+#define C4TSEL0	CCPTMRS0,6
+#define C4TSEL1	CCPTMRS0,7
+#ifndef _LIB_BUILD
+#endif
+#define C5TSEL0	CCPTMRS1,0
+#define C5TSEL1	CCPTMRS1,1
+#ifndef _LIB_BUILD
+#endif
+#define CCP3M0	CCP3CON,0
+#define CCP3M1	CCP3CON,1
+#define CCP3M2	CCP3CON,2
+#define CCP3M3	CCP3CON,3
+#define DC3B0	CCP3CON,4
+#define DC3B1	CCP3CON,5
+#define P3M0	CCP3CON,6
+#define P3M1	CCP3CON,7
+#ifndef _LIB_BUILD
+#endif
+#define P3DC0	PWM3CON,0
+#define P3DC1	PWM3CON,1
+#define P3DC2	PWM3CON,2
+#define P3DC3	PWM3CON,3
+#define P3DC4	PWM3CON,4
+#define P3DC5	PWM3CON,5
+#define P3DC6	PWM3CON,6
+#define P3RSEN	PWM3CON,7
+#ifndef _LIB_BUILD
+#endif
+#define PSS3BD0	ECCP3AS,0
+#define PSS3BD1	ECCP3AS,1
+#define PSS3AC0	ECCP3AS,2
+#define PSS3AC1	ECCP3AS,3
+#define CCP3AS0	ECCP3AS,4
+#define CCP3AS1	ECCP3AS,5
+#define CCP3AS2	ECCP3AS,6
+#define CCP3ASE	ECCP3AS,7
+#ifndef _LIB_BUILD
+#endif
+#define STR3A	PSTR3CON,0
+#define STR3B	PSTR3CON,1
+#define STR3C	PSTR3CON,2
+#define STR3D	PSTR3CON,3
+#define STR3SYNC	PSTR3CON,4
+#ifndef _LIB_BUILD
+#endif
+#define CCP4M0	CCP4CON,0
+#define CCP4M1	CCP4CON,1
+#define CCP4M2	CCP4CON,2
+#define CCP4M3	CCP4CON,3
+#define DC4B0	CCP4CON,4
+#define DC4B1	CCP4CON,5
+#ifndef _LIB_BUILD
+#endif
+#define CCP5M0	CCP5CON,0
+#define CCP5M1	CCP5CON,1
+#define CCP5M2	CCP5CON,2
+#define CCP5M3	CCP5CON,3
+#define DC5B0	CCP5CON,4
+#define DC5B1	CCP5CON,5
+#ifndef _LIB_BUILD
+#endif
+#define IOCBP0	IOCBP,0
+#define IOCBP1	IOCBP,1
+#define IOCBP2	IOCBP,2
+#define IOCBP3	IOCBP,3
+#define IOCBP4	IOCBP,4
+#define IOCBP5	IOCBP,5
+#define IOCBP6	IOCBP,6
+#define IOCBP7	IOCBP,7
+#ifndef _LIB_BUILD
+#endif
+#define IOCBN0	IOCBN,0
+#define IOCBN1	IOCBN,1
+#define IOCBN2	IOCBN,2
+#define IOCBN3	IOCBN,3
+#define IOCBN4	IOCBN,4
+#define IOCBN5	IOCBN,5
+#define IOCBN6	IOCBN,6
+#define IOCBN7	IOCBN,7
+#ifndef _LIB_BUILD
+#endif
+#define IOCBF0	IOCBF,0
+#define IOCBF1	IOCBF,1
+#define IOCBF2	IOCBF,2
+#define IOCBF3	IOCBF,3
+#define IOCBF4	IOCBF,4
+#define IOCBF5	IOCBF,5
+#define IOCBF6	IOCBF,6
+#define IOCBF7	IOCBF,7
+#ifndef _LIB_BUILD
+#endif
+#define T4CKPS0	T4CON,0
+#define T4CKPS1	T4CON,1
+#define TMR4ON	T4CON,2
+#define T4OUTPS0	T4CON,3
+#define T4OUTPS1	T4CON,4
+#define T4OUTPS2	T4CON,5
+#define T4OUTPS3	T4CON,6
+#ifndef _LIB_BUILD
+#endif
+#define T6CKPS0	T6CON,0
+#define T6CKPS1	T6CON,1
+#define TMR6ON	T6CON,2
+#define T6OUTPS0	T6CON,3
+#define T6OUTPS1	T6CON,4
+#define T6OUTPS2	T6CON,5
+#define T6OUTPS3	T6CON,6
+#ifndef _LIB_BUILD
+#endif
+#define LMUX0	LCDCON,0
+#define LMUX1	LCDCON,1
+#define CS0	LCDCON,2
+#define CS1	LCDCON,3
+#define WERR	LCDCON,5
+#define SLPEN	LCDCON,6
+#define LCDEN	LCDCON,7
+#ifndef _LIB_BUILD
+#endif
+#define LP0	LCDPS,0
+#define LP1	LCDPS,1
+#define LP2	LCDPS,2
+#define LP3	LCDPS,3
+#define WA	LCDPS,4
+#define LCDA	LCDPS,5
+#define BIASMD	LCDPS,6
+#define WFT	LCDPS,7
+#ifndef _LIB_BUILD
+#endif
+#define VLCD1PE	LCDREF,1
+#define VLCD2PE	LCDREF,2
+#define VLCD3PE	LCDREF,3
+#define LCDIRI	LCDREF,5
+#define LCDIRS	LCDREF,6
+#define LCDIRE	LCDREF,7
+#ifndef _LIB_BUILD
+#endif
+#define LCDCST0	LCDCST,0
+#define LCDCST1	LCDCST,1
+#define LCDCST2	LCDCST,2
+#ifndef _LIB_BUILD
+#endif
+#define LRLAT0	LCDRL,0
+#define LRLAT1	LCDRL,1
+#define LRLAT2	LCDRL,2
+#define LRLBP0	LCDRL,4
+#define LRLBP1	LCDRL,5
+#define LRLAP0	LCDRL,6
+#define LRLAP1	LCDRL,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG0	LCDSE0,0
+#define SEG1	LCDSE0,1
+#define SEG2	LCDSE0,2
+#define SEG3	LCDSE0,3
+#define SEG4	LCDSE0,4
+#define SEG5	LCDSE0,5
+#define SEG6	LCDSE0,6
+#define SEG7	LCDSE0,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG8	LCDSE1,0
+#define SEG9	LCDSE1,1
+#define SEG10	LCDSE1,2
+#define SEG11	LCDSE1,3
+#define SEG12	LCDSE1,4
+#define SEG13	LCDSE1,5
+#define SEG14	LCDSE1,6
+#define SEG15	LCDSE1,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG0COM0	LCDDATA0,0
+#define SEG1COM0	LCDDATA0,1
+#define SEG2COM0	LCDDATA0,2
+#define SEG3COM0	LCDDATA0,3
+#define SEG4COM0	LCDDATA0,4
+#define SEG5COM0	LCDDATA0,5
+#define SEG6COM0	LCDDATA0,6
+#define SEG7COM0	LCDDATA0,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG8COM0	LCDDATA1,0
+#define SEG9COM0	LCDDATA1,1
+#define SEG10COM0	LCDDATA1,2
+#define SEG11COM0	LCDDATA1,3
+#define SEG12COM0	LCDDATA1,4
+#define SEG13COM0	LCDDATA1,5
+#define SEG14COM0	LCDDATA1,6
+#define SEG15COM0	LCDDATA1,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG0COM1	LCDDATA3,0
+#define SEG1COM1	LCDDATA3,1
+#define SEG2COM1	LCDDATA3,2
+#define SEG3COM1	LCDDATA3,3
+#define SEG4COM1	LCDDATA3,4
+#define SEG5COM1	LCDDATA3,5
+#define SEG6COM1	LCDDATA3,6
+#define SEG7COM1	LCDDATA3,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG8COM1	LCDDATA4,0
+#define SEG9COM1	LCDDATA4,1
+#define SEG10COM1	LCDDATA4,2
+#define SEG11COM1	LCDDATA4,3
+#define SEG12COM1	LCDDATA4,4
+#define SEG13COM1	LCDDATA4,5
+#define SEG14COM1	LCDDATA4,6
+#define SEG15COM1	LCDDATA4,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG0COM2	LCDDATA6,0
+#define SEG1COM2	LCDDATA6,1
+#define SEG2COM2	LCDDATA6,2
+#define SEG3COM2	LCDDATA6,3
+#define SEG4COM2	LCDDATA6,4
+#define SEG5COM2	LCDDATA6,5
+#define SEG6COM2	LCDDATA6,6
+#define SEG7COM2	LCDDATA6,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG8COM2	LCDDATA7,0
+#define SEG9COM2	LCDDATA7,1
+#define SEG10COM2	LCDDATA7,2
+#define SEG11COM2	LCDDATA7,3
+#define SEG12COM2	LCDDATA7,4
+#define SEG13COM2	LCDDATA7,5
+#define SEG14COM2	LCDDATA7,6
+#define SEG15COM2	LCDDATA7,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG0COM3	LCDDATA9,0
+#define SEG1COM3	LCDDATA9,1
+#define SEG2COM3	LCDDATA9,2
+#define SEG3COM3	LCDDATA9,3
+#define SEG4COM3	LCDDATA9,4
+#define SEG5COM3	LCDDATA9,5
+#define SEG6COM3	LCDDATA9,6
+#define SEG7COM3	LCDDATA9,7
+#ifndef _LIB_BUILD
+#endif
+#define SEG8COM3	LCDDATA10,0
+#define SEG9COM3	LCDDATA10,1
+#define SEG10COM3	LCDDATA10,2
+#define SEG11COM3	LCDDATA10,3
+#define SEG12COM3	LCDDATA10,4
+#define SEG13COM3	LCDDATA10,5
+#define SEG14COM3	LCDDATA10,6
+#define SEG15COM3	LCDDATA10,7
+#ifndef _LIB_BUILD
+#endif
+#define C_SHAD	STATUS_SHAD,0
+#define DC_SHAD	STATUS_SHAD,1
+#define Z_SHAD	STATUS_SHAD,2
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#ifndef _LIB_BUILD
+#endif
+#endif

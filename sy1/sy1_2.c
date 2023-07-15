@@ -1,0 +1,69 @@
+#include<pic.h>
+
+main()
+
+{
+
+#asm
+
+        CLRF   _STATUS,F
+		
+		BCF    03H,6
+
+		BSF    03H,5
+
+		BTFSC  68H,7
+
+		GOTO    LOOP1
+
+		GOTO	LOOP2
+
+LOOP1:	COMF	68H,F
+
+		INCF	68H,F
+
+		BSF	68H,7
+
+	
+
+LOOP2:	BTFSC  69H,7
+
+		GOTO   LOOP4
+
+		GOTO	LOOP3
+
+LOOP4:	COMF	69H,F
+
+		INCF	69H,F
+
+		BSF	69H,7
+
+LOOP3:	MOVF	68H,W
+
+		ADDWF 69H,F
+
+		BTFSC	69H,7
+
+		GOTO	LOOP5
+
+		GOTO	LOOP6
+
+LOOP5:	COMF	69H,F
+
+		INCF	69H,F
+
+		BSF	69H,7
+
+LOOP6:	MOVF	69H,W
+
+		BCF 03H,6
+		
+		BCF 03H,5
+		
+		MOVWF 32H
+
+#endasm 
+
+loop:goto	loop;
+
+} 

@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "htc.h": "c",
+        "pic.h": "c",
+        "pic16f1936.h": "c",
+        "pic168xa.h": "c",
+        "stdio.h": "c",
+        "key.h": "c"
+    }
+}
